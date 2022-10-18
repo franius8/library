@@ -4,11 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <title>Library</title>
 </head>
 <body>
-    
+    <h1>My Library</h1>
+    <div id="content">
+        <div id="books">
+            <h2>Your books</h2>
+            <div id="container">
+            
+            </div>
+        </div>
+        <div id="form">        
+            <h2>Add new book</h2>
+            <form>
+                <div class="formdiv">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" pattern="[A-Za-z]{2,64}" placeholder="Alice in Wonderland" required>
+                </div>
+                <div class="formdiv">
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" pattern="[A-Za-z]{2,64}" placeholder="Lewis Carroll" required>
+                </div>
+                <div class="formdiv">
+                    <label for="pages">Pages:</label>
+                    <input type="number" id="pages" placeholder="2137" required>
+                </div>
+                <button type="submit" id="addbutton">Add book</button>
+            </form>
+        </div>
+    </div>  
 </body>
 </html>
