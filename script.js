@@ -1,5 +1,6 @@
 const container = document.getElementById('container');
 const addButton = document.getElementById('addbutton');
+const form = document.getElementById('form');
 const readButtonAry = [];
 
 let myLibrary = [];
@@ -18,24 +19,25 @@ class Book {
 
 document.addEventListener('click', function(e) {
     if (e.target && e.target.className == 'readbutton') {
-        toggleReadStatus(e.target.getAttribute('bookIndex'))
+        toggleReadStatus(e.target.getAttribute('bookIndex'), e.target);
     }
 });
 
 document.addEventListener('click', function(e) {
     if (e.target && e.target.className == 'deletebutton') {
-        deleteBook(e.target.getAttribute('bookIndex'))
+        deleteBook(e.target.getAttribute('bookIndex'));
     }
 });
 
-addButton.addEventListener('click', function() {
-    console.log('a');
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     myLibrary.push(new Book(title, author, pages, false));
     container.innerHTML = '';
     displayLibrary(myLibrary);
+    e.target.reset();
 });
 
 function addToLibrary(book) {
@@ -45,7 +47,10 @@ function addToLibrary(book) {
 function addReadButton(element, index) {
     const readButton = document.createElement('button');
     readButton.classList.add('readbutton');
-    readButton.textContent = 'Change read status';
+    const isRead = myLibrary[index].isRead
+    readButton.textContent = isRead ? 'Already read' : 'Not read yet' ;
+    readButton.style.backgroundColor = isRead ? 'var(--read)' : 'var(--not-read)' ;
+    readButton.style.border = isRead ? '1px solid var(--read)' : '1px solid var(--not-read)' ;
     readButton.setAttribute('bookIndex', index);
     element.appendChild(readButton);
 }
@@ -58,7 +63,7 @@ function addDeleteButton(element, index) {
     element.appendChild(deleteButton);
 }
 
-function toggleReadStatus(index) {
+function toggleReadStatus(index, button) {
     myLibrary[index].toggleReadStatus();
     container.innerHTML = '';
     displayLibrary(myLibrary);
@@ -72,22 +77,18 @@ function deleteBook(index) {
 
 function displayLibrary(library) {
     library.forEach((book, index) => {
-        const bookCard = document.createElement('div');
-        const bookName = document.createElement('div');
-        const bookAuthor = document.createElement('div');
-        const bookPages = document.createElement('div');
-        const isRead = document.createElement('div');
+        const bookCard = document.createElement('p');
+        const bookName = document.createElement('p');
+        const bookAuthor = document.createElement('p');
+        const bookPages = document.createElement('p');
         bookCard.classList.add('bookcard');
         bookCard.setAttribute('bookIndex', index);
         bookName.innerHTML = `<span class="light">Title:</span> ${book.name}`;
         bookAuthor.innerHTML = `<span class="light">Author:</span> ${book.author}`;
         bookPages.innerHTML = `<span class="light">Pages:</span> ${book.pages}`;
-        isRead.innerHTML = '<span class="light">Read status:</span> ' + 
-            (book.isRead ? 'Already read' : '<span class="redspan">Not read yet</span>');
         bookCard.appendChild(bookName);
         bookCard.appendChild(bookAuthor);
         bookCard.appendChild(bookPages);
-        bookCard.appendChild(isRead);
         addReadButton(bookCard, index);
         addDeleteButton(bookCard,index);
         container.appendChild(bookCard);

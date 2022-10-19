@@ -13,17 +13,18 @@
     <title>Library</title>
 </head>
 <body>
-    <h1>My Library</h1>
+    <div id="h1div">
+        <h1>Library</h1>
+    </div>
     <div id="content">
         <div id="books">
-            <h2>Your books</h2>
             <div id="container">
             
             </div>
         </div>
-        <div id="form">        
+        <div id="formdiv">        
             <h2>Add new book</h2>
-            <form id="form">
+            <form id="form" method="post">
                 <div class="formdiv">
                     <label for="title">Title:</label>
                     <input type="text" id="title" pattern="[A-Za-z]{2,64}" placeholder="Alice in Wonderland" required>

@@ -1,22 +1,31 @@
 :root {
-    --background-color: #f0fdfa;
-    --card-background-color: #99f6e4;
-    --border-color: #0f766e;
-    --hover-color: #0d3533;
+    --background-color: #e5e7eb;
+    --card-background-color: white;
+    --border-color: #94a3b8;
+    --hover-color: #334155;
+    --read: #22c55e;
+    --not-read: #ef4444;
+
 }
 
 body {
     background-color: var(--background-color);
     font-family: Roboto, Arial, Helvetica, sans-serif;
     font-weight: 500;
-    padding: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+#h1div {
+    background-color: white;
+    padding: 0.75rem 0;
+    box-shadow: 0 5px 5px #999999;
 }
 
 h1, h2 {
     color: var(--hover-color);
     text-align: center;
-    margin: 0;
-    margin-bottom: 1rem;    
+    margin: 0;   
 }
 
 h1 {
@@ -27,11 +36,12 @@ h1 {
 #content {
     display: grid;
     grid-template: 1fr / 3fr 1fr;
+    padding: 1.5rem;
 }
 
 #container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
 }
 
@@ -43,6 +53,14 @@ h1 {
  display: grid;
  gap: 0.5rem;
  color: var(--hover-color);
+ word-wrap: break-word;
+ min-width: 0;
+}
+
+.bookcard p {
+    word-wrap: break-word;
+    min-width: 0;
+    margin: 0;
 }
 
 .light {
@@ -72,6 +90,11 @@ form {
     gap: 1.25rem;
 }
 
+#formdiv {
+    position: sticky;
+    top: 0;
+}
+
 .formdiv {
     display: flex;
     flex-direction: column;
@@ -91,4 +114,8 @@ form {
 
 .redspan {
     color: rgb(180, 0, 0);
+}
+
+.read {
+    background-color: red;
 }
