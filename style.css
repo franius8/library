@@ -49,11 +49,11 @@ h1 {
     font-weight: 300;
 }
 
-.readbutton, #addbutton {
+.readbutton, .deletebutton, #addbutton {
     font-family: inherit;
-    font-size: inherit;
+    font-size: 0.75rem;
     padding: 0.75rem 0;
-    margin: 0.5rem 0;
+    margin: 0.3rem 0;
     border-radius: 1rem;
     background-color: var(--border-color);
     border: 1px solid var(--border-color);
@@ -61,7 +61,7 @@ h1 {
     font-weight: 700;
 }
 
-.readbutton:hover, #addbutton:hover {
+.readbutton:hover, .deletebutton:hover, #addbutton:hover {
     background-color: var(--hover-color);
     cursor: pointer;
 }
@@ -87,4 +87,8 @@ form {
 .formdiv input:focus {
     outline: none !important;
     box-shadow: 0 0 8px var(--hover-color);
+}
+
+.redspan {
+    color: rgb(180, 0, 0);
 }
