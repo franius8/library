@@ -1,6 +1,9 @@
 const container = document.getElementById('container');
 const addButton = document.getElementById('addbutton');
 const form = document.getElementById('form');
+const titleInput = document.getElementById('title');
+const authorInput = document.getElementById('author');
+const pagesInput = document.getElementById('pages');
 const readButtonAry = [];
 
 let myLibrary = [];
@@ -16,6 +19,52 @@ class Book {
         this.isRead = this.isRead ? false : true;
     }
 }
+
+titleInput.addEventListener('input', () => {
+    if (titleInput.validity.tooShort) {
+      titleInput.setCustomValidity("Title too short");
+      titleInput.reportValidity();
+    } else if (titleInput.validity.tooLong) {
+      titleInput.setCustomValidity("Title too long");
+      titleInput.reportValidity();
+    } else if (titleInput.validity.valueMissing) {
+      titleInput.setCustomValidity("Title is required");
+      titleInput.reportValidity();
+    } else {
+      titleInput.setCustomValidity("");
+    }
+});
+
+authorInput.addEventListener('input', () => {
+
+    if (authorInput.validity.tooShort) {
+        authorInput.setCustomValidity("Author's name too short");
+        authorInput.reportValidity();
+    } else if (authorInput.validity.tooLong) {
+        authorInput.setCustomValidity("Author's name too long");
+        authorInput.reportValidity();
+    } else if (authorInput.validity.valueMissing) {
+        authorInput.setCustomValidity("Author's name is required");
+        authorInput.reportValidity();
+    } else {
+        authorInput.setCustomValidity("");
+    }
+});
+
+pagesInput.addEventListener('input', () => {
+    if (pagesInput.validity.rangeUnderflow) {
+        pagesInput.setCustomValidity("It must have at least 1 page to be a book"); 
+        pagesInput.reportValidity();
+    } else if (pagesInput.validity.rangeOverflow) {
+        pagesInput.setCustomValidity("Are you actually planning to read a book that long?\n (must be less than 10 000)");
+        pagesInput.reportValidity();
+    } else if (pagesInput.validity.valueMissing) {
+        pagesInput.setCustomValidity("Number of pages is required");
+        pagesInput.reportValidity();
+    } else {
+        pagesInput.setCustomValidity("");
+    }
+});
 
 document.addEventListener('click', function(e) {
     if (e.target && e.target.className == 'readbutton') {
